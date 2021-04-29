@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">My Application</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="profile">Profile</string>
+    <string name="addName">Введите ваша имя</string>
+    <string name="cash">Счёт</string>
+    <string name="debt">Долг</string>
+</resources>
