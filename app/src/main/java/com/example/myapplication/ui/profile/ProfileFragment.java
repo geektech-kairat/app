@@ -68,7 +68,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        binding.nameProfile2.addTextChangedListener(new TextWatcher() {
+        binding.salary2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
