@@ -87,6 +87,8 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="170dp"
+            android:id="@+id/debt2"
+
             android:layout_height="wrap_content"
             android:enabled="false" />
 

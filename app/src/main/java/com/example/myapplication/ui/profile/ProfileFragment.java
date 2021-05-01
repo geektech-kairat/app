@@ -35,6 +35,7 @@ public class ProfileFragment extends Fragment {
         spinnerForCurrency();
         saveNameAndSalary();
         getImage();
+        binding.debt2.setText(App.share.getForDebt());
         return binding.getRoot();
     }
 

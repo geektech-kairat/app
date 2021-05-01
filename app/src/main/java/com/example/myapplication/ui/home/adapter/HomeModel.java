@@ -15,11 +15,12 @@ public class HomeModel {
     private String date;
     private String editDate = "Не был изменен";
 
-    public HomeModel(String name, String description, String debt, String date) {
+    public HomeModel(String name, String description, String debt, String date, String editDate) {
         this.name = name;
         this.description = description;
         this.debt = debt;
         this.date = date;
+        this.editDate = editDate;
     }
 
     public String getDebt() {

@@ -95,7 +95,7 @@
         android:id="@+id/currentDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Установить время "
+        android:text="0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/addNote" />
 
@@ -107,5 +107,11 @@
         android:text="Сохранить"
         app:cornerRadius="10dp"
         app:layout_constraintBottom_toBottomOf="parent" />
-
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/currentDate"
+        app:layout_constraintTop_toTopOf="@id/addNote"
+        app:layout_constraintEnd_toStartOf="@id/currentDateTime"
+        android:src="@drawable/ic_baseline_edit_calendar_24"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

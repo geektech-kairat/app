@@ -87,17 +87,17 @@ public class HomeFragment extends Fragment implements Listen {
                     String a = result.getString("1");
                     String b = result.getString("2");
                     String c = result.getString("3");
+                    String d = result.getString("4");
                     id = result.getLong("id");
 
                     HomeModel model = adapter.getModelToId(id);
                     if (model != null) {
                         model.setName(a);
                         model.setDescription(b);
-                        model.setEditDate(s);
-                        model.setDebt(c);
+                        model.setDebt(d);
                         App.fillDataBase.fillDao().update(model);
                     } else {
-                        App.fillDataBase.fillDao().insert(new HomeModel(a, b,c ,s ));
+                        App.fillDataBase.fillDao().insert(new HomeModel(a, b,c ,s, d ));
                     }
                 });
     }
@@ -111,6 +111,8 @@ public class HomeFragment extends Fragment implements Listen {
         bundle.putString("description1", homeModel.getDescription());
         bundle.putString("date", homeModel.getDate());
         bundle.putString("debt", homeModel.getDebt());
+        bundle.putString("currentDate", homeModel.getEditDate());
+
         bundle.putLong("id", homeModel.getId());
         getParentFragmentManager().setFragmentResult("2", bundle);
         navController.navigate(R.id.action_navigation_home_to_formFragment);
