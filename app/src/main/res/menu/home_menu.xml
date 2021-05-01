@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/sortAZ"
+        android:title="Сортировка А-Я"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sortZA"
+        android:title="Сортировка Я-А"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/deleteAll"
+        android:title="Удалить всё"
+        app:showAsAction="never" />
+</menu>

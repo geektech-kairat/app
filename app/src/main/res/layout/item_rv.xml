@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    android:background="@drawable/back2">
+
+    <ImageView
+        android:id="@+id/addNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="5dp"
+        android:src="@drawable/ic_baseline_note_add_24"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dateAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="25 Марта 16:00"
+        android:textColor="#833535"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@+id/addNote"
+        app:layout_constraintTop_toTopOf="@id/addNote" />
+
+    <ImageView
+        android:id="@+id/editNote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_baseline_edit_note_24"
+        app:layout_constraintEnd_toStartOf="@+id/dateEdit"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/dateEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="20dp"
+        android:text="25 Марта 16:55"
+        android:textColor="#812828"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/addNote" />
+
+    <TextView
+
+        android:id="@+id/debtName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="20dp"
+        android:text="Кому должен: "
+        android:textColor="#1F1B1B"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/addNote"
+        app:layout_constraintTop_toBottomOf="@+id/addNote" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Isken"
+        android:id="@+id/debt2"
+        app:layout_constraintStart_toEndOf="@id/debtName"
+        app:layout_constraintTop_toTopOf="@id/debtName" />
+
+    <TextView
+        android:id="@+id/tvDebt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Долг: "
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@id/editNote"
+        app:layout_constraintTop_toTopOf="@id/debtName" />
+
+    <TextView
+        android:id="@+id/debt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="2500"
+        app:layout_constraintStart_toEndOf="@id/tvDebt"
+        app:layout_constraintTop_toTopOf="@id/tvDebt" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Описание: "
+        android:textStyle="bold"
+        android:id="@+id/desc"
+        android:textColor="@color/black"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/debtName"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="10dp"
+        android:maxLines="3"
+        android:id="@+id/description"
+        android:singleLine="true"
+        app:layout_constraintStart_toEndOf="@id/desc"
+        android:text="asdasd"
+        app:layout_constraintTop_toTopOf="@id/desc" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
