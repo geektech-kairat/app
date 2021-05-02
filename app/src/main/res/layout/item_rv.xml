@@ -1,115 +1,212 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dp"
-    android:background="@drawable/back2">
 
-    <ImageView
-        android:id="@+id/addNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
-        android:src="@drawable/ic_baseline_note_add_24"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    android:layout_marginVertical="10dp"
+    android:padding="20dp">
 
-    <TextView
-        android:id="@+id/dateAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="25 Марта 16:00"
-        android:textColor="#833535"
-        android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/addNote"
-        app:layout_constraintTop_toTopOf="@id/addNote" />
+    <androidx.cardview.widget.CardView
+        app:cardCornerRadius="20dp"
+        android:elevation="@dimen/cardview_default_radius"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <ImageView
-        android:id="@+id/editNote"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/ic_baseline_edit_note_24"
-        app:layout_constraintEnd_toStartOf="@+id/dateEdit"
-        app:layout_constraintTop_toTopOf="parent" />
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:background="@drawable/shadow"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/dateEdit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="20dp"
-        android:text="25 Марта 16:55"
-        android:textColor="#812828"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/addNote" />
+            <TextView
+                android:id="@+id/c"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="C:"
+                android:textColor="@color/white"
+                android:textSize="8dp"
 
-    <TextView
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        android:id="@+id/debtName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            <TextView
+                android:layout_marginStart="5dp"
+                android:textColor="@color/white"
+                android:id="@+id/dateAdd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25 Марта 16:00"
 
-        android:layout_marginTop="20dp"
-        android:text="Кому должен: "
-        android:textColor="#1F1B1B"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/addNote"
-        app:layout_constraintTop_toBottomOf="@+id/addNote" />
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/c"
+                app:layout_constraintStart_toEndOf="@id/c" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Isken"
-        android:id="@+id/debt2"
-        app:layout_constraintStart_toEndOf="@id/debtName"
-        app:layout_constraintTop_toTopOf="@id/debtName" />
+            <TextView
+                android:id="@+id/editNote"
+                android:layout_marginEnd="5dp"
+                android:layout_width="wrap_content"
+                android:text="До: "
+                android:textColor="@color/white"
+                android:textSize="8dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/dateEdit"
+                app:layout_constraintTop_toTopOf="@id/c" />
 
-    <TextView
-        android:id="@+id/tvDebt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Долг: "
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@id/editNote"
-        app:layout_constraintTop_toTopOf="@id/debtName" />
+            <TextView
+                android:id="@+id/dateEdit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="25 Марта 16:55"
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@id/c"
+                app:layout_constraintEnd_toEndOf="parent" />
 
-    <TextView
-        android:id="@+id/debt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:text="2500"
-        app:layout_constraintStart_toEndOf="@id/tvDebt"
-        app:layout_constraintTop_toTopOf="@id/tvDebt" />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Описание: "
-        android:textStyle="bold"
-        android:id="@+id/desc"
-        android:textColor="@color/black"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/debtName"/>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout1"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/c">
 
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginHorizontal="10dp"
-        android:maxLines="3"
-        android:id="@+id/description"
-        android:singleLine="true"
-        app:layout_constraintStart_toEndOf="@id/desc"
-        android:text="asdasd"
-        app:layout_constraintTop_toTopOf="@id/desc" />
+                <ImageView
+                    android:id="@+id/icon1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/avat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+
+                    android:id="@+id/debtName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Кому должен: "
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintBottom_toBottomOf="@id/icon1"
+                    app:layout_constraintStart_toEndOf="@id/icon1"
+                    app:layout_constraintTop_toTopOf="@id/icon1" />
+
+                <TextView
+                    android:id="@+id/debt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Isken"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/debtName"
+                    app:layout_constraintTop_toTopOf="@id/debtName" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout1">
+
+                <ImageView
+                    android:id="@+id/icon2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/icon2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+                <TextView
+                    android:id="@+id/tvDebt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Долг: "
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/icon2"
+                    app:layout_constraintStart_toEndOf="@id/icon2"
+                    app:layout_constraintTop_toTopOf="@id/icon2" />
+
+                <TextView
+                    android:id="@+id/debt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="2500"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@id/tvDebt"
+                    app:layout_constraintTop_toTopOf="@id/tvDebt" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout2">
+
+                <ImageView
+                    android:id="@+id/icon3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:src="@drawable/icon3"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/desc"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="Описания:"
+                    android:textStyle="bold"
+                    android:textColor="@color/white"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@id/icon3"
+                    app:layout_constraintStart_toEndOf="@id/icon3"
+                    app:layout_constraintTop_toTopOf="@id/icon3" />
+
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:singleLine="true"
+                    android:text="asdasd"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:paddingEnd="10dp"
+                    app:layout_constraintEnd_toStartOf="@id/clickOpla"
+                    app:layout_constraintBottom_toBottomOf="@id/desc"
+                    app:layout_constraintStart_toEndOf="@id/desc"
+
+                    app:layout_constraintTop_toTopOf="@id/desc" />
+                <ImageButton
+                    android:id="@+id/clickOpla"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:background="@drawable/icon4"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

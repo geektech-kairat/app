@@ -27,6 +27,7 @@ public class Share {
         sharedPreferences.edit().putString(SALARY, name).apply();
     }
 
+
     public String getForDebt() {
         return sharedPreferences.getString(DEBT, "0".trim());
     }
