@@ -1,31 +1,21 @@
 package com.example.myapplication.ui.form;
 
-import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentResultListener;
-import androidx.navigation.NavController;
-import androidx.navigation.fragment.NavHostFragment;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.DatePicker;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.App;
-import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentFormBinding;
 
 import java.util.Calendar;
 import java.util.TimeZone;
-
-import static android.content.ContentValues.TAG;
 
 
 public class FormFragment extends Fragment {
@@ -86,9 +76,7 @@ public class FormFragment extends Fragment {
                 close();
             }
         });
-
         binding.currentDate.setOnClickListener(v -> {
-
             int selectedYear = 2021;
             int selectedMonth = 4;
             int selectedDayOfMonth = 1;

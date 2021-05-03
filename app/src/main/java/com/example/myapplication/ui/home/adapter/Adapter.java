@@ -1,11 +1,14 @@
 package com.example.myapplication.ui.home.adapter;
 
+import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
+import android.view.Window;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.ItemRvBinding;
 
 import java.util.ArrayList;
@@ -68,6 +71,15 @@ public class Adapter extends RecyclerView.Adapter<Adapter.HomeViewHolder> {
             binding.getRoot().setOnClickListener(v -> {
 
                 listen.setDataForForm(homeModel, getAdapterPosition());
+            });
+
+            binding.getRoot().setOnLongClickListener(v -> {
+                Dialog dialog = new Dialog(binding.getRoot().getContext());
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.custom_alertdialog);
+                dialog.show();
+
+                return true;
             });
         }
     }

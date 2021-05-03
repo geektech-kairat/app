@@ -1,16 +1,12 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-
-    android:layout_marginVertical="10dp"
-    android:padding="20dp">
+    android:layout_marginVertical="10dp">
 
     <androidx.cardview.widget.CardView
         app:cardCornerRadius="20dp"
-        android:elevation="@dimen/cardview_default_radius"
+        android:layout_margin="20dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
