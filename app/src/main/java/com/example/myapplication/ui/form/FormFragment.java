@@ -1,5 +1,6 @@
 package com.example.myapplication.ui.form;
 
+import android.annotation.SuppressLint;
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.util.Log;
@@ -14,8 +15,15 @@ import androidx.navigation.fragment.NavHostFragment;
 import com.example.myapplication.App;
 import com.example.myapplication.databinding.FragmentFormBinding;
 
+import org.jetbrains.annotations.NotNull;
+
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.TimeZone;
+
+import static android.content.ContentValues.TAG;
 
 
 public class FormFragment extends Fragment {
@@ -24,15 +32,20 @@ public class FormFragment extends Fragment {
     private NavController navController;
     private String s = "Поле не должен быть пустым ";
     private long id;
-    private Calendar cal = Calendar.getInstance(TimeZone.getDefault());
+    private String a ;
+
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         navController = NavHostFragment.findNavController(this);
         binding = FragmentFormBinding.inflate(inflater, container, false);
         getData();
         initListeners();
+
+        @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd MMMM HH : mm");
+        a = dateFormat.format(new Date());
+        binding.dateAdd.setText(a);
 
         return binding.getRoot();
     }
@@ -41,33 +54,44 @@ public class FormFragment extends Fragment {
         getParentFragmentManager().setFragmentResultListener("2", getViewLifecycleOwner(), (requestKey, result) -> {
             if (requestKey.equals("2") && result != null)
                 Log.e("TAG", "onFragmentResult:  " + result.getString("number1"));
-            binding.debtName2.setText(result.getString("number1"));
-            binding.description.setText(result.getString("description1"));
-            binding.dateAdd.setText(result.getString("date"));
-            binding.debt2.setText(result.getString("debt"));
-            binding.currentDateTime.setText(result.getString("currentDate"));
+            binding.debtName2.setText(result.getString("number1").trim());
+            binding.description.setText(result.getString("description1").trim());
+            binding.dateAdd.setText(result.getString("date").trim());
+            binding.debt2.setText(result.getString("debt").trim());
+            binding.currentDateTime.setText(result.getString("currentDate").trim());
             id = result.getLong("id");
         });
     }
 
     public void initListeners() {
 
+
         binding.btnSave.setOnClickListener(v -> {
-            if (binding.debtName2.getText().toString().isEmpty() && binding.debt2.getText().toString().isEmpty() && binding.description.getText().toString().isEmpty()) {
+            if (binding.debtName2.getText().toString().isEmpty() && binding.debt2.getText().toString()
+                    .isEmpty() && binding.description
+                    .getText().toString().isEmpty() && binding.currentDateTime.getText().equals("")) {
                 binding.debtName2.setError(s);
                 binding.debt2.setError(s);
                 binding.description.setError(s);
+                binding.currentDateTime.setError("Укажите дату когда надо вернуть долг ");
             } else if (binding.debtName2.getText().toString().isEmpty()) {
                 binding.debtName2.setError(s);
             } else if (binding.debt2.getText().toString().isEmpty()) {
-                binding.debt2.setError(s);
-            } else {
+
+            }else if (binding.currentDateTime.getText().toString().equals("")){
+                binding.currentDateTime.setError("Укажите дату");
+            }else if (binding.description.getText().toString().isEmpty()){
+                binding.description.setError(s);
+            }
+
+            else {
                 Bundle bundle = new Bundle();
                 bundle.putString("1", binding.debtName2.getText().toString());
                 bundle.putString("2", binding.description.getText().toString());
                 bundle.putLong("id", id);
                 bundle.putString("3", binding.debt2.getText().toString());
                 bundle.putString("4", binding.currentDateTime.getText().toString());
+                bundle.putString("5" , a);
                 getParentFragmentManager().setFragmentResult("key", bundle);
                 int old = Integer.parseInt(App.share.getForDebt());
                 int now = Integer.parseInt(binding.debt2.getText().toString());
@@ -87,6 +111,7 @@ public class FormFragment extends Fragment {
             DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(),
                     dateSetListener, selectedYear, selectedMonth, selectedDayOfMonth);
 // Show
+
             datePickerDialog.show();
 
         });

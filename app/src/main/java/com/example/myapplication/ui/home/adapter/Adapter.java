@@ -3,11 +3,13 @@ package com.example.myapplication.ui.home.adapter;
 import android.app.Dialog;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.view.Window;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.myapplication.App;
 import com.example.myapplication.R;
 import com.example.myapplication.databinding.ItemRvBinding;
 
@@ -39,10 +41,17 @@ public class Adapter extends RecyclerView.Adapter<Adapter.HomeViewHolder> {
     public int getItemCount() {
         return list.size();
     }
+
     public void addList(List<HomeModel> homeModelList) {
         list = homeModelList;
         notifyDataSetChanged();
     }
+    public void remove (HomeModel homeModel, int post){
+        App.fillDataBase.fillDao().delete(homeModel);
+        notifyItemChanged(post);
+    }
+
+
     public HomeModel getModelToId(long id) {
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).getId() == id) {
@@ -60,9 +69,12 @@ public class Adapter extends RecyclerView.Adapter<Adapter.HomeViewHolder> {
             super(itemView.getRoot());
             binding = itemView;
         }
+
+
         public void onBind(HomeModel homeModel, Listen listen) {
 
             binding.dateAdd.setText(homeModel.getDate());
+
             binding.debt2.setText(homeModel.getName());
             binding.description.setText(homeModel.getDescription());
             binding.debt.setText(homeModel.getDebt());
@@ -74,14 +86,11 @@ public class Adapter extends RecyclerView.Adapter<Adapter.HomeViewHolder> {
             });
 
             binding.getRoot().setOnLongClickListener(v -> {
-                Dialog dialog = new Dialog(binding.getRoot().getContext());
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.custom_alertdialog);
-                dialog.show();
-
+                listen.del(homeModel, getAdapterPosition());
                 return true;
             });
         }
+
     }
 
 }

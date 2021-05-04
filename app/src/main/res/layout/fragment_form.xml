@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
     android:background="@drawable/back2"
-    android:padding="10dp"
-    tools:context=".ui.form.FormFragment">
+    android:padding="10dp">
 
     <ImageView
         android:id="@+id/addNote"
@@ -15,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="5dp"
-        android:src="@drawable/ic_baseline_note_add_24"
+        android:src="@drawable/ic_baseline_calendar_today_24"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,11 +22,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
-        android:text="25 Марта 16:00"
-        android:textColor="#833535"
+        android:textColor="#E90202"
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/addNote"
         app:layout_constraintTop_toTopOf="@id/addNote" />
+
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -69,6 +67,7 @@
 
     <TextView
         android:id="@+id/desc"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -76,7 +75,7 @@
         android:layout_marginBottom="10dp"
 
         android:text="Описание: "
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:textSize="21dp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -87,6 +86,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:maxLines="6"
+        android:textColorHint="#D9C1C1"
+        android:hint="Введите описание"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/desc"
         app:layout_constraintTop_toBottomOf="@id/desc" />
@@ -95,7 +97,7 @@
         android:id="@+id/currentDateTime"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0"
+        android:textColor="#DD2C00"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/addNote" />
 
@@ -112,6 +114,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/currentDate"
         app:layout_constraintTop_toTopOf="@id/addNote"
+
         app:layout_constraintEnd_toStartOf="@id/currentDateTime"
         android:src="@drawable/ic_baseline_edit_calendar_24"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

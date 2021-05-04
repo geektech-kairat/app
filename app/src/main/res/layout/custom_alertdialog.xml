@@ -1,60 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:background="@drawable/back2"
     android:layout_height="250dp"
-    android:elevation="25dp"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@drawable/back2"
+    android:elevation="35dp">
 
-    <androidx.cardview.widget.CardView
-        app:layout_constraintTop_toTopOf="parent"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutTitle"
         android:layout_width="match_parent"
-        android:id="@+id/cv"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
-       <androidx.constraintlayout.widget.ConstraintLayout
-           android:layout_width="match_parent"
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:background="@drawable/back_for_alert"
+            app:layout_constraintTop_toTopOf="parent" />
 
-           android:layout_height="wrap_content">
-           <ImageView
-               app:layout_constraintTop_toTopOf="parent"
-               android:layout_width="match_parent"
-               android:layout_height="100dp"
-               android:background="@drawable/back_for_alert"/>
+        <TextView
+            android:id="@+id/title1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Выберите способ погашения долга"
+            android:textColor="@color/white"
+            android:textSize="19sp"
+            android:textStyle="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-           <TextView
-               app:layout_constraintStart_toStartOf="parent"
-               app:layout_constraintTop_toTopOf="parent"
-               app:layout_constraintEnd_toEndOf="parent"
-               android:layout_marginTop="20dp"
-               android:layout_width="wrap_content"
-               android:layout_height="wrap_content"
-               android:text="Выберите метод погашения долга"
-               android:textSize="21sp"
-               android:textColor="@color/white"
-               android:textStyle="normal"/>
-       </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/all"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
-        android:text="Погасить всё"
-        app:layout_constraintTop_toBottomOf="@id/cv"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:text="Всё"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@id/layoutTitle" />
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/part"
         android:layout_width="150dp"
-        android:layout_marginEnd="20dp"
         android:layout_height="wrap_content"
-        android:text="частично"
-        app:layout_constraintTop_toBottomOf="@id/cv"
-app:layout_constraintEnd_toEndOf="parent"        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_marginEnd="20dp"
+        android:text="часть"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/all" />
 
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Отмена"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/debtDialog1"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+
+        android:hint="Введите сумму..."
+        app:layout_constraintCircleRadius="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/layoutTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/debtDialog2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <Button
+        android:id="@+id/ok"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:text="Погасить"
+        android:textSize="10sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -43,7 +43,7 @@ public class ProfileFragment extends Fragment {
         String[] currency = {"Доллар", "Сом", "Рубль"};
         ArrayAdapter<String> aa = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, currency);
         binding.spinnerForCurrency.setAdapter(aa);
-        binding.spinnerForCurrency2.setAdapter(aa);
+
 
     }
 
@@ -97,12 +97,7 @@ public class ProfileFragment extends Fragment {
         imageView.setOnClickListener(v ->
                 ProfileFragment.this.openGallery());
         mGetContent = registerForActivityResult(new ActivityResultContracts.GetContent(),
-                new ActivityResultCallback<Uri>() {
-                    @Override
-                    public void onActivityResult(Uri uri) {
-                        imageView.setImageURI(uri);
-                    }
-                });
+                imageView::setImageURI);
     }
 
 
