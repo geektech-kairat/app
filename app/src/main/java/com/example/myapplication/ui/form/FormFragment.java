@@ -13,7 +13,6 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.App;
-import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentFormBinding;
 
 import org.jetbrains.annotations.NotNull;
@@ -23,16 +22,15 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import static android.content.ContentValues.TAG;
-
-
 public class FormFragment extends Fragment {
 
     private FragmentFormBinding binding;
     private NavController navController;
     private String s = "Поле не должен быть пустым ";
     private long id;
-    private String a ;
-
+    private String a;
+    private int oldDebt3, old, mat, now;
+    private String oldDebt;
 
     @Override
     public View onCreateView(@NotNull LayoutInflater inflater, ViewGroup container,
@@ -41,11 +39,12 @@ public class FormFragment extends Fragment {
         binding = FragmentFormBinding.inflate(inflater, container, false);
         getData();
         initListeners();
+        old = Integer.parseInt(App.share.getForDebt());
+
 
         @SuppressLint("SimpleDateFormat") DateFormat dateFormat = new SimpleDateFormat("dd MMMM HH : mm");
         a = dateFormat.format(new Date());
         binding.dateAdd.setText(a);
-
         return binding.getRoot();
     }
 
@@ -58,8 +57,15 @@ public class FormFragment extends Fragment {
             binding.description.setText(result.getString("description1").trim());
             binding.dateAdd.setText(result.getString("date").trim());
             binding.debt2.setText(result.getString("debt").trim());
+            oldDebt = result.getString("debt").trim();
             binding.currentDateTime.setText(result.getString("currentDate").trim());
             id = result.getLong("id");
+            oldDebt = result.getString("debt");
+            if (!oldDebt.equals("")) {
+                int oldDebt2 = Integer.parseInt(oldDebt);
+                mat = old - oldDebt2;
+                App.share.setForDebt(String.valueOf(mat));
+            }
         });
     }
 
@@ -91,12 +97,12 @@ public class FormFragment extends Fragment {
                 bundle.putLong("id", id);
                 bundle.putString("3", binding.debt2.getText().toString());
                 bundle.putString("4", binding.currentDateTime.getText().toString());
-                bundle.putString("5" , a);
+                bundle.putString("5", a);
                 getParentFragmentManager().setFragmentResult("key", bundle);
-                int old = Integer.parseInt(App.share.getForDebt());
-                int now = Integer.parseInt(binding.debt2.getText().toString());
-                int mat = old + now;
-                App.share.setForDebt(String.valueOf(mat));
+                now = Integer.parseInt(binding.debt2.getText().toString());
+                int old2 = Integer.parseInt(App.share.getForDebt());
+                int mat2 = old2 + now;
+                App.share.setForDebt(String.valueOf(mat2));
                 close();
             }
         });

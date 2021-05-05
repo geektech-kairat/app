@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,6 +46,8 @@ public class HomeFragment extends Fragment implements Listen {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         adapter = new Adapter((Listen) this);
+        setHasOptionsMenu(true);
+
     }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -174,34 +178,13 @@ public class HomeFragment extends Fragment implements Listen {
                     int mat2 = old - now;
                     App.share.setForDebt(String.valueOf(mat2));
                     dialog.cancel();
-
-                }
-
-                else {
+                } else {
                     editText2.setError(" Сумма больше чем вы должны !");
                 }
             });
         });
 
 
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.sortAZ) {
-            adapter.addList(App.fillDataBase.fillDao().getAllBySort());
-            binding.rv.setAdapter(adapter);
-            Snackbar.make(requireView(), "Отсортирован A-Я", Snackbar.LENGTH_SHORT).show();
-
-        } else if (item.getItemId() == R.id.sortZA) {
-            adapter.addList(App.fillDataBase.fillDao().getAllBySortRes());
-            binding.rv.setAdapter(adapter);
-            Snackbar.make(requireView(), "Отсортирован Я-А", Snackbar.LENGTH_SHORT).show();
-
-        } else if (item.getItemId() == R.id.deleteAll) {
-            App.fillDataBase.fillDao().deleteAll();
-        }
-        return super.onOptionsItemSelected(item);
     }
 
     public void alert() {
@@ -243,4 +226,29 @@ public class HomeFragment extends Fragment implements Listen {
         });
     }
 
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        inflater.inflate(R.menu.home_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.sortAZ) {
+            adapter.addList(App.fillDataBase.fillDao().getAllBySortDate());
+            binding.rv.setAdapter(adapter);
+            Snackbar.make(requireView(), "Отсортирован по дате создании", Snackbar.LENGTH_SHORT).show();
+
+        } else if (item.getItemId() == R.id.sortZA) {
+            adapter.addList(App.fillDataBase.fillDao().getAllBySortDateTime());
+            binding.rv.setAdapter(adapter);
+            Snackbar.make(requireView(), "Отсортирован по дате задолженности", Snackbar.LENGTH_SHORT).show();
+
+        } else if (item.getItemId() == R.id.deleteAll) {
+
+            App.fillDataBase.fillDao().deleteAll();
+            App.share.setForDebt("0");
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="10dp"
     android:background="@drawable/back2"
     android:padding="10dp">
 
@@ -101,7 +100,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@id/addNote" />
 
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSave"
         android:layout_width="match_parent"
@@ -114,7 +112,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/currentDate"
         app:layout_constraintTop_toTopOf="@id/addNote"
-
         app:layout_constraintEnd_toStartOf="@id/currentDateTime"
         android:src="@drawable/ic_baseline_edit_calendar_24"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
