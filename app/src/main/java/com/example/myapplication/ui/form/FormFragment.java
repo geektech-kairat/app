@@ -13,15 +13,14 @@ import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.example.myapplication.App;
+import com.example.myapplication.R;
 import com.example.myapplication.databinding.FragmentFormBinding;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.TimeZone;
 
 import static android.content.ContentValues.TAG;
 
@@ -54,7 +53,8 @@ public class FormFragment extends Fragment {
         getParentFragmentManager().setFragmentResultListener("2", getViewLifecycleOwner(), (requestKey, result) -> {
             if (requestKey.equals("2") && result != null)
                 Log.e("TAG", "onFragmentResult:  " + result.getString("number1"));
-            binding.debtName2.setText(result.getString("number1").trim());
+            binding.debtName2.setText(result.getString("number1"));
+            Log.e(TAG, "getData: ");
             binding.description.setText(result.getString("description1").trim());
             binding.dateAdd.setText(result.getString("date").trim());
             binding.debt2.setText(result.getString("debt").trim());

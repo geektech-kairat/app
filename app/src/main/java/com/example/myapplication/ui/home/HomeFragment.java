@@ -9,7 +9,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.activity.OnBackPressedCallback;
@@ -86,24 +85,24 @@ public class HomeFragment extends Fragment implements Listen {
         getParentFragmentManager().setFragmentResultListener("key",
                 getViewLifecycleOwner(), (requestKey, result) -> {
 
+                    a = result.getString("1");
                     b = result.getString("2");
                     c = result.getString("3");
                     d = result.getString("4");
                     s = result.getString("5");
                     id = result.getLong("id");
 
-
                     HomeModel model = adapter.getModelToId(id);
                     if (model != null) {
                         model.setName(a);
                         model.setDescription(b);
-                        model.setDebt(d);
+                        model.setDebt(c);
                         App.fillDataBase.fillDao().update(model);
                     } else {
                         App.fillDataBase.fillDao().insert(new HomeModel(a, b, c, s, d));
                     }
                 });
-    }
+                }
 
     @Override
     //ОТПРАВЛЕНИЕ ДАННЫХ
@@ -163,12 +162,21 @@ public class HomeFragment extends Fragment implements Listen {
                 int old = Integer.parseInt(App.share.getForDebt());
                 int now = Integer.parseInt(editText2.getText().toString());
                 int model = Integer.parseInt(homeModel.getDebt());
-                if (old >= now){
+                if (old > now){
                     int mat = model - now;
-                    int mat2 = old - mat;
+                    int mat2 = old - now;
+                    homeModel.setDebt(String.valueOf(mat));
+                    App.fillDataBase.fillDao().update(homeModel);
                     App.share.setForDebt(String.valueOf(mat2));
                     dialog.cancel();
+                }else if (old == now){
+                    adapter.remove(homeModel, position);
+                    int mat2 = old - now;
+                    App.share.setForDebt(String.valueOf(mat2));
+                    dialog.cancel();
+
                 }
+
                 else {
                     editText2.setError(" Сумма больше чем вы должны !");
                 }
