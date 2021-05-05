@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment implements Listen {
     private NavController navController;
     private Adapter adapter;
     private String a, b, c, d, s;
-    private long id;
+    private long id,s2;
     private boolean loading = true;
 
     @Override
@@ -94,16 +94,19 @@ public class HomeFragment extends Fragment implements Listen {
                     c = result.getString("3");
                     d = result.getString("4");
                     s = result.getString("5");
+                    s2 = result.getLong("6");
                     id = result.getLong("id");
+                    Log.e(TAG, "getDataInForm: "+s2 );
 
                     HomeModel model = adapter.getModelToId(id);
                     if (model != null) {
                         model.setName(a);
                         model.setDescription(b);
                         model.setDebt(c);
+                        model.setEditDate2(s2);
                         App.fillDataBase.fillDao().update(model);
                     } else {
-                        App.fillDataBase.fillDao().insert(new HomeModel(a, b, c, s, d));
+                        App.fillDataBase.fillDao().insert(new HomeModel(a, b, c, s, d, s2));
                     }
                 });
                 }
@@ -133,7 +136,7 @@ public class HomeFragment extends Fragment implements Listen {
         Button button = dialog.findViewById(R.id.all);
         Button button2 = dialog.findViewById(R.id.part);
         Button button3 = dialog.findViewById(R.id.ok);
-        Button cancel = dialog.findViewById(R.id.ok);
+        Button cancel = dialog.findViewById(R.id.back);
         TextInputLayout editText = dialog.findViewById(R.id.debtDialog1);
         TextInputEditText editText2 = dialog.findViewById(R.id.debtDialog2);
         button.setVisibility(View.VISIBLE);
@@ -245,10 +248,14 @@ public class HomeFragment extends Fragment implements Listen {
             Snackbar.make(requireView(), "Отсортирован по дате задолженности", Snackbar.LENGTH_SHORT).show();
 
         } else if (item.getItemId() == R.id.deleteAll) {
-
             App.fillDataBase.fillDao().deleteAll();
             App.share.setForDebt("0");
         }
-        return super.onOptionsItemSelected(item);
+        else if (item.getItemId() == R.id.sortDebt) {
+            adapter.addList(App.fillDataBase.fillDao().getAllBySortDebt());
+            binding.rv.setAdapter(adapter);
+            Snackbar.make(requireView(), "Отсортирован по Debt", Snackbar.LENGTH_SHORT).show();
+        }
+            return super.onOptionsItemSelected(item);
     }
 }

@@ -4,7 +4,7 @@ import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
 @Entity
-public class HomeModel {
+public class HomeModel implements Comparable<HomeModel> {
     @PrimaryKey(autoGenerate = true)
     private long id;
 
@@ -13,14 +13,16 @@ public class HomeModel {
     private String description;
     private String debt;
     private String date;
-    private String editDate = "Не был изменен";
+    private String editDate;
+    private long editDate2;
 
-    public HomeModel(String name, String description, String debt, String date, String editDate) {
+    public HomeModel(String name, String description, String debt, String date, String editDate, long editDate2) {
         this.name = name;
         this.description = description;
         this.debt = debt;
         this.date = date;
         this.editDate = editDate;
+        this.editDate2 = editDate2;
     }
 
     public String getDebt() {
@@ -71,5 +73,17 @@ public class HomeModel {
         this.description = description;
     }
 
+    public long getEditDate2() {
+        return editDate2;
+    }
 
+    public void setEditDate2(long editDate2) {
+        this.editDate2 = editDate2;
+    }
+
+    @Override
+    public int compareTo(HomeModel o) {
+        long dateOther = o.id;
+        return (int) (this.id -dateOther);
+    }
 }

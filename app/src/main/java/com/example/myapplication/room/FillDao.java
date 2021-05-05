@@ -26,13 +26,25 @@ public interface FillDao {
     LiveData<List<HomeModel>> getAll();
 
 
+
     @Query("SELECT * FROM homemodel ORDER by date ASC")
     List<HomeModel> getAllBySortDate();
+
+    @Query("SELECT * FROM homemodel ORDER by debt DESC")
+    List<HomeModel> getAllBySortDebt();
 
     @Query("SELECT * FROM homemodel ORDER by editDate ASC")
     List<HomeModel> getAllBySortDateTime();
 
+
+
     @Query("DELETE FROM homemodel")
     void deleteAll();
+
+
+
+
+
+
 
 }

@@ -27,9 +27,9 @@ public class FormFragment extends Fragment {
     private FragmentFormBinding binding;
     private NavController navController;
     private String s = "Поле не должен быть пустым ";
-    private long id;
+    private long id,dateAll;
     private String a;
-    private int oldDebt3, old, mat, now;
+    private int  old, mat, now;
     private String oldDebt;
 
     @Override
@@ -98,6 +98,8 @@ public class FormFragment extends Fragment {
                 bundle.putString("3", binding.debt2.getText().toString());
                 bundle.putString("4", binding.currentDateTime.getText().toString());
                 bundle.putString("5", a);
+
+                bundle.putLong("6", dateAll);
                 getParentFragmentManager().setFragmentResult("key", bundle);
                 now = Integer.parseInt(binding.debt2.getText().toString());
                 int old2 = Integer.parseInt(App.share.getForDebt());
@@ -111,8 +113,17 @@ public class FormFragment extends Fragment {
             int selectedMonth = 4;
             int selectedDayOfMonth = 1;
 
+
+
 // Date Select Listener.
-            DatePickerDialog.OnDateSetListener dateSetListener = (view, year, monthOfYear, dayOfMonth) -> binding.currentDateTime.setText(dayOfMonth + "-" + (monthOfYear + 1) + "-" + year);
+            @SuppressLint("SetTextI18n") DatePickerDialog.OnDateSetListener dateSetListener =
+                    (view, year, monthOfYear, dayOfMonth)
+                            -> {
+                        binding.currentDateTime.setText(dayOfMonth + "-"
+                                + (monthOfYear + 1) + "-" + year);
+                        dateAll =selectedYear+selectedMonth +selectedDayOfMonth;
+                        Log.e(TAG, "initListeners: " +dateAll );
+                    };
 // Create DatePickerDialog (Spinner Mode):
             DatePickerDialog datePickerDialog = new DatePickerDialog(requireContext(),
                     dateSetListener, selectedYear, selectedMonth, selectedDayOfMonth);

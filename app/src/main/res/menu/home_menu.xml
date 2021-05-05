@@ -4,11 +4,15 @@
 
     <item
         android:id="@+id/sortAZ"
-        android:title="Сортировка А-Я"
+        android:title="Отсортировать по дате создания"
         app:showAsAction="never" />
     <item
         android:id="@+id/sortZA"
-        android:title="Сортировка Я-А"
+        android:title="Отсортировать по дате задолженности"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/sortDebt"
+        android:title="Отсортировать по долгу"
         app:showAsAction="never" />
     <item
         android:id="@+id/deleteAll"
